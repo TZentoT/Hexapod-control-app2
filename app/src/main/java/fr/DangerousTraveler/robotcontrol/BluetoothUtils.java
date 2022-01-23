@@ -7,18 +7,18 @@ import java.util.Arrays;
 
 import fr.DangerousTraveler.robotcontrol.activities.MainActivity;
 
-// classe contenant des méthodes permettant de gérer les connexions bluetooth
+// класс, содержащий методы для управления подключениями bluetooth
 public class BluetoothUtils {
 
     private static BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-    // méthode permettant de vérifier la disponibilité du bluetooth sur l'appareil
+    // метод проверки доступности bluetooth на устройстве
     public static boolean isBluetoothAvailable() {
 
         return mBluetoothAdapter != null;
     }
 
-    // méthode permettant d'envoyer les positions des servoMoteurs par bluetooth
+    // метод передачи положения сервоприводов по bluetooth
     public static void sendDataViaBluetooth(String data) {
 
         try {
@@ -28,15 +28,15 @@ public class BluetoothUtils {
         }
     }
 
-    // méthode permettant d'initialiser les servoMoteurs à leur position d'étalonnage
+    // метод инициализации сервоприводов в их калибровочном положении
     public static String initServoPos() {
 
         String travellingTime = MainActivity.sharedPreferences.getString("settings_travelling_time", "2000");
 
-        // récupérer les positions des servoMoteurs à partir du fichier txt
+        // извлечение положений сервоприводов из текстового файла
         int[] servoPos = FilesUtils.readServoPosFromTxt();
 
-        // mettre les données à envoyer dans une String
+        // поместите данные для отправки в строку
         String data = "#0P" + servoPos[0]
                 + "#1P" + servoPos[1]
                 + "#4P" + servoPos[2]

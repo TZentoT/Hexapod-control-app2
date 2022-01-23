@@ -12,19 +12,19 @@ import java.io.InputStreamReader;
 
 import fr.DangerousTraveler.robotcontrol.activities.MainActivity;
 
-// classe contenant des méthodes permettant de gérer les fichiers
+// класс, содержащий методы для управления файлами
 public class FilesUtils {
 
-    // méthode permettant de récupérer les positions d'étalonnage des servoMoteurs à partir d'un fichier texte
+    // функция извлечения калибровочных значений сервоприводов из текстового файла
     public static int[] readServoPosFromTxt() {
 
-        // récupérer le nom et l'emplacement du fichier d'étalonnage
+        // получить имя и местоположение файла калибровки
         String path = getFilePath();
         String fileName = getFileName();
 
         String line;
 
-        // positions des servoMoteurs
+        // положение сервоприводов
         int[] servoPos = {1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500};
 
         try {
@@ -109,7 +109,7 @@ public class FilesUtils {
         return servoPos;
     }
 
-    // vérifier que le sockage externe est accessible en lecture
+    // проверка, что внешний сокет доступен для чтения
     public static boolean isExternalStorageReadable() {
 
         String state = Environment.getExternalStorageState();
@@ -120,12 +120,12 @@ public class FilesUtils {
         return false;
     }
 
-    // méthode permettant de récupérer l'emplacement du fichier d'étalonnage
+    // проверка получения местоположения файла калибровки
     public static String getFilePath() {
 
         String path;
 
-        // utiliser l'emplacement par défault
+        // использовать расположение по умолчанию
         if (!MainActivity.sharedPreferences.getBoolean("switch_default_file_path", false)) {
 
             path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/AppInventor/assets/";
@@ -139,7 +139,7 @@ public class FilesUtils {
         return path;
     }
 
-    // méthode permettant de récupérer le nom du fichier d'étalonnage
+    // метод получения имени файла калибровки
     public static String getFileName() {
 
         return MainActivity.sharedPreferences.getString("file_name", "hexapod");
